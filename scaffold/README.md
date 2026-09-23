@@ -25,6 +25,10 @@ cp -R ~/wherever/agent-handbook/scaffold/common/. path/to/project/
 repository root, so `scaffold/common/.github/workflows/*.yml` is inert here. That is intentional
 — don't "fix" it by moving them.
 
+**Scaffold Markdown is kept Prettier-formatted** (`prettier --check scaffold/common`), so copies
+pass in projects that lint Markdown. Leave the YAML alone: its quote style depends on each
+project's Prettier config, so no one formatting can satisfy all of them.
+
 ## Ownership after copying
 
 **`AGENTS.md` becomes the repository's own file.** Copy it once, then edit it freely — it is
