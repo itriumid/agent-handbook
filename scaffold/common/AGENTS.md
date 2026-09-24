@@ -42,6 +42,7 @@ Don't load them upfront; read the one that applies.
 | Unsure what an agent may write or do here (catch-all)                                         | `.handbook/conventions/rules/ai-agents.md`           |
 | Bumping a dependency or runtime version, or naming things                                     | `.handbook/conventions/rules/engineering.md`         |
 | Labelling a pull request                                                                      | `.handbook/conventions/reference/labels.md`          |
+| Choosing colours, or designing anything visual                                                 | `.handbook/conventions/reference/brand.md`           |
 | Something already went wrong — a leak, a bad push, a weakened check                           | `.handbook/conventions/reference/agent-incidents.md` |
 | Wondering why a cross-project technology choice was made                                      | `.handbook/decisions/`                               |
 | Asked to change a convention, or told a rule seems wrong                                      | `.handbook/conventions/background/`                  |

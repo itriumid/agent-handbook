@@ -59,8 +59,8 @@ on purpose — they are a different kind of change.
 
 ## Brand colours
 
-Graphite `#2B2B2B` and pastel pink `#FEBFCA`. Use them for diagrams, documents, and anything
-else these projects produce.
+The `status:` labels use graphite `#2B2B2B` and pastel pink `#FEBFCA`. The full palette and how
+to use it are in [`brand.md`](brand.md).
 
 ## One thing to watch on release notes
 
