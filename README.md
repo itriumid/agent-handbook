@@ -1,8 +1,9 @@
 # Agent Handbook
 
-The conventions every AI coding agent follows in my personal projects — and that I follow too.
-Rules, the reasoning behind them, cross-project decisions, and the scaffolding each repository
-copies in. One source of truth, read directly by whatever agent is working in a project, and
+The conventions for [Itrium](https://github.com/itriumid)'s projects: followed by every AI
+coding agent that works on them, and by everyone else who does too. Rules, the reasoning behind
+them, cross-project decisions, and the scaffolding each repository copies in. They're written
+for how Itrium works, not as general advice. One source of truth, read directly by whatever agent is working in a project, and
 by me when a rule needs changing.
 
 Nothing here is repository-specific. If a rule or a decision only makes sense in one codebase,

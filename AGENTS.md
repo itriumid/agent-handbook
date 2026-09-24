@@ -1,6 +1,6 @@
 # Working on this handbook
 
-This repository is the source of truth for the conventions in every one of my personal
+This repository is the source of truth for the conventions in every one of Itrium's
 projects. Editing it changes how every project is worked on, immediately — there is no version
 pinning and no per-repository pull request. Treat every change as having that blast radius.
 
