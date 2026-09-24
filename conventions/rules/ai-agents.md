@@ -1,4 +1,4 @@
-# AI agents working in my repositories
+# AI agents working in Itrium's repositories
 
 These apply to every AI coding tool and every model, whatever its defaults. Several add
 attribution automatically, so the default usually has to be overridden explicitly rather than
