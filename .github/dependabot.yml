@@ -2,8 +2,8 @@
 # requests look. `open-pull-requests-limit: 0` turns version updates off, so the only pull
 # requests are for vulnerabilities. Raise it to have Dependabot open routine upgrades as well.
 #
-# `type: chore` instead of Dependabot's default `dependencies` label, which label-sync.yml would
-# delete: see .handbook/conventions/reference/labels.md.
+# `area: tooling` instead of Dependabot's default `dependencies` label: the handbook labels
+# pull requests by area, and workflows are this repository's tooling.
 version: 2
 updates:
   - package-ecosystem: github-actions
@@ -11,4 +11,4 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 0
-    labels: ['type: chore']
+    labels: ['area: tooling']
