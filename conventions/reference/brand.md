@@ -13,7 +13,7 @@ The palette is called **Rhodonite**, after the mineral: graphite with pink runni
 | Graphite | `#2B2B2B` | Text on light backgrounds, dark backgrounds, the logo's tile |
 | Pastel pink | `#FEBFCA` | The one accent colour: what's playing, what has focus, the primary action |
 | Off-white | `#F2F2F2` | Text on graphite |
-| Muted grey | `#9A9A9A` | Secondary text |
+| Muted grey | `#AAAAAA` on dark, `#6B6B6B` on light | Secondary text |
 
 Interfaces add their own neutral surfaces and borders around these; Honk's README lists its
 design tokens as an example.
@@ -26,6 +26,9 @@ design tokens as an example.
 - **Pink means something.** Use it for one thing at a time (playing, focus, or the primary
   action), not as decoration.
 - **Graphite, not black.** Use `#2B2B2B`, not `#000000`.
+- **Text meets level AA of the Web Content Accessibility Guidelines** (4.5:1 for body text) on
+  every surface it sits on, not only the page background. Check raised surfaces too: the old
+  muted grey `#9A9A9A` passed on graphite but failed on `#343434` cards.
 
 ## The logo
 
