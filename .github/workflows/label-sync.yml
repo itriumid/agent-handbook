@@ -29,15 +29,15 @@ jobs:
           script: |
             // Source of truth: conventions/reference/labels.md, "This handbook". Palette is Catppuccin Mocha
             // (https://catppuccin.com/palette), except the status: labels, which use the brand
-            // colours: graphite and pastel pink.
+            // colors: graphite and pastel pink.
             //
             // Descriptions are capped at 100 characters — the API rejects anything longer with a
             // 422, and this job creates and updates in one pass, so one long description fails
             // the label it belongs to.
             const STANDARD_LABELS = [
-              { name: 'area: rules', color: 'f5c2e7', description: 'A behavioural rule changed. Read the matching background first.' },
+              { name: 'area: rules', color: 'f5c2e7', description: 'A behavioral rule changed. Read the matching background first.' },
               { name: 'area: decisions', color: '74c7ec', description: 'A cross-project decision was added or changed' },
-              { name: 'area: reference', color: 'f2cdcd', description: 'Lookup tables and procedures. No behaviour change.' },
+              { name: 'area: reference', color: 'f2cdcd', description: 'Lookup tables and procedures. No behavior change.' },
               { name: 'area: background', color: 'f5e0dc', description: 'Rationale and decision log. Skippable, not instructions.' },
               { name: 'area: scaffold', color: '89b4fa', description: 'Files copied into other repositories' },
               { name: 'area: tooling', color: 'b4befe', description: 'The scripts/ directory and the .github/ directory of this repository' },
@@ -77,7 +77,7 @@ jobs:
               }
 
               // Renaming (e.g. casing) preserves the label on existing issues and pull requests;
-              // deleting and recreating would silently drop it from anything already labelled.
+              // deleting and recreating would silently drop it from anything already labeled.
               const needsUpdate =
                 label.name !== target.name ||
                 label.color.toLowerCase() !== target.color.toLowerCase() ||

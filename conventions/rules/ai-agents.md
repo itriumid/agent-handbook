@@ -210,7 +210,7 @@ once the work is done.** That covers:
 - More than one reasonable reading of what was asked, where the readings would produce
   different diffs.
 - A change that can't be verified — no way to run it, no access to the environment or data it
-  targets, no test that exercises the behaviour — leaving no way to tell from the code alone
+  targets, no test that exercises the behavior — leaving no way to tell from the code alone
   whether it's actually correct.
 - A decision that's really the requester's to make — which of two approaches, whether a
   tradeoff is acceptable — dressed up as a technical one so the agent can keep moving.
@@ -219,7 +219,7 @@ once the work is done.** That covers:
 by then it's already cost the time to write. Asking first costs one round trip; guessing wrong
 costs that same round trip anyway, plus the discarded work.
 
-This isn't licence to ask about everything — most tasks have one reasonable reading, and
+This isn't license to ask about everything — most tasks have one reasonable reading, and
 working through those without checking in is the point of delegating the task at all. It's for
 the cases where guessing wrong would actually change what gets built.
 

@@ -144,7 +144,7 @@ mismatch later.
 ## Why `type: chore` exists even though chores don't ship in release notes
 
 Without it a chore pull request carries no `type:` label, which is indistinguishable from a pull
-request that was never labelled. It also puts *chore* where it's visible, which matters given
+request that was never labeled. It also puts *chore* where it's visible, which matters given
 that `chore` absorbs refactors.
 
 ## Why draft pull requests instead of `[WIP]`
