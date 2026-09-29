@@ -66,8 +66,8 @@ unassigned pull request is easy to lose in a list.
 
 A pull request carries **one** `type:` label and **zero or more** `status:` labels.
 
-**The `type:` label maps 1:1 to the branch prefix**, so there is no judgement call at labelling
+**The `type:` label maps 1:1 to the branch prefix**, so there is no judgment call at labeling
 time — only at branching time, where the two questions in [`branching.md`](branching.md)
 already settle it. Note `fix/` → `type: bug`: the names differ deliberately.
 
-Full table and colours: [`../reference/labels.md`](../reference/labels.md).
+Full table and colors: [`../reference/labels.md`](../reference/labels.md).

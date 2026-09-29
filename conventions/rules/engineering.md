@@ -22,3 +22,9 @@ Established terms of art that are already the primary name of a real technology 
 stay as they are — `API`, `URL`, `HTTP`, `ID` — since spelling those out would itself be less
 clear, not more. So do names a framework or tool dictates, like `tauri.conf.json` or
 `vite.config.ts`.
+
+## Write in American English
+
+**Prose, comments and names use American spelling** — `color` not `colour`, `license` not
+`licence`, `behavior` not `behaviour`. Proper names and names a tool or standard dictates stay
+as they are.

@@ -35,7 +35,7 @@ Getting this wrong has a specific cost, so it is worth being careful about:
 **Rules are bare imperatives, with the argument stripped out.** Write "slugs are lowercase
 kebab-case", not "slugs are lowercase because git refs are case-sensitive". Rationale inside a
 rule invites the reader to decide whether the rule applies to them — which is exactly the
-behaviour a rule exists to prevent. Put the argument in `conventions/background/` and let the
+behavior a rule exists to prevent. Put the argument in `conventions/background/` and let the
 rule stand bare.
 
 **Background is explicitly skippable.** Do not put anything load-bearing there. If an agent
