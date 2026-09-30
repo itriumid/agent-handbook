@@ -14,6 +14,7 @@ offer others as a choice (see [Other palettes](#other-palettes)).
 |---|---|---|
 | Graphite | `#2B2B2B` | Text on light backgrounds, dark backgrounds, the logo's tile |
 | Pastel pink | `#FEBFCA` | The one accent color: what's playing, what has focus, the primary action |
+| Deep rose | `#C46475` | Pink drawn as a line on light backgrounds: a border or outline that shows a state |
 | Off-white | `#F2F2F2` | Text on graphite |
 | Muted gray | `#AAAAAA` on dark, `#6B6B6B` on light | Secondary text |
 
@@ -25,6 +26,9 @@ design tokens as an example.
 - **Text on pink is always graphite**, never white.
 - **Pink is never text on a light background.** It's too light to read there; use it for
   fills and accents only.
+- **Pink as a line on a light background is deep rose.** Pastel pink is 1.5:1 on white, so a
+  border, outline or underline that shows a state (what's selected, what's pressed) uses
+  `#C46475`, which reaches 3:1 in the same hue. Pink fills stay pastel.
 - **Pink means something.** Use it for one thing at a time (playing, focus, or the primary
   action), not as decoration.
 - **Graphite, not black.** Use `#2B2B2B`, not `#000000`.
@@ -54,14 +58,14 @@ When a free application offers palettes:
   picks between them, and follows the system unless someone chooses otherwise.
 - **Every palette meets the same bar as Rhodonite**, in both versions: 4.5:1 for text and
   secondary text on every surface, for text on the accent, and for text on an accent tint;
-  3:1 for the focus outline. A popular palette is adapted until it passes, not shipped as it
+  3:1 for the focus outline and for accent lines that show a state. A popular palette is adapted until it passes, not shipped as it
   comes, and the adaptations are written down next to the colors.
 - **A test checks it.** An application that offers palettes checks every one in Continuous
   Integration, so a failing color can't be merged. Honk's `tests/contrast.test.mjs` is the
   model: it reads the stylesheet and works out each palette in every theme state.
 - **The accent keeps its meaning.** Each palette has one accent, used for the same things as
   pink (what's playing, what has focus, the primary action), with its own on-accent color for
-  text on it.
+  text on it, and a deeper shade for lines in light mode if the accent can't reach 3:1 there.
 - **Credit the source.** Name the palette it comes from and link to it, in the application's
   README.
 
