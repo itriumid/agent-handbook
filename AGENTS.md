@@ -32,11 +32,16 @@ pinning and no per-repository pull request. Treat every change as having that bl
 
 Getting this wrong has a specific cost, so it is worth being careful about:
 
-**Rules are bare imperatives, with the argument stripped out.** Write "slugs are lowercase
-kebab-case", not "slugs are lowercase because git refs are case-sensitive". Rationale inside a
-rule invites the reader to decide whether the rule applies to them — which is exactly the
-behavior a rule exists to prevent. Put the argument in `conventions/background/` and let the
-rule stand bare.
+**Rules lead with the imperative and leave the argument out.** "Slugs are lowercase
+kebab-case" needs nothing more. The case for a rule — what else was considered and why it lost —
+goes in `conventions/background/`. Inside a rule it invites the reader to reopen whether the
+rule applies to them, which is exactly the behavior a rule exists to prevent.
+
+**A rule may carry a short Why when the reason marks its edges** — what the rule protects and
+what breaks without it, the way each section of `conventions/rules/ai-agents.md` does. Agents
+apply a bare rule literally, in the cases its wording didn't anticipate as well as the ones it
+did; the reason is what tells them where the rule stops. Keep it to what's at stake, never a
+defense of the choice.
 
 **Background is explicitly skippable.** Do not put anything load-bearing there. If an agent
 skipping it would behave incorrectly, it is a rule and it is in the wrong directory.
