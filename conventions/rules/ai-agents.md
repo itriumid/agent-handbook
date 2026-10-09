@@ -198,6 +198,12 @@ own.
 
 Say what you want to add and why, and let the human decide whether to bring it in.
 
+Installing what the project already declares, so its checks can run, is not adding a
+dependency. Do it from the lockfile with the project's own package manager (`pnpm install
+--frozen-lockfile`, `npm ci`, `pip install -r requirements.txt`). A command that rewrites the
+lockfile, pulls a newer version, or runs an install script the project hasn't approved is adding
+one.
+
 **Why.** A dependency is code neither of us wrote, running with whatever access the project
 already has. Trusting it is a different kind of decision from the rest of a task, and it
 deserves to be made on purpose rather than picked up in passing.
@@ -235,6 +241,11 @@ or running only the fast parts.
 
 - "It looks correct" is not "it passed." If there's a way to check the change, running it is
   part of the task, not optional polish.
+- A check counts only if it ran and exercised the change. A syntax-only check, or a test,
+  type-check, or build command that failed to start, is not verification. If what's missing is
+  the project's declared dependencies, install them (see **Don't add a dependency without
+  asking**); if a real check still can't run, say which one and why instead of reporting the
+  change done.
 - A failure is the task, not a footnote — fix it or say so plainly. Don't report success with a
   failure sitting underneath it.
 - This is the case where verification exists and is being skipped — not to be confused with the

@@ -13,7 +13,7 @@ it belongs in that codebase instead.
 
 | Path | What it is | Who reads it |
 |---|---|---|
-| `conventions/rules/` | Operative rules. Imperative, no argument. Includes what AI agents may write and do. | constantly |
+| `conventions/rules/` | Operative rules. Imperative, with a short Why where it marks a rule's edges; no argument. Includes what AI agents may write and do. | constantly |
 | `conventions/reference/` | Lookup material — label tables, procedures. | on demand |
 | `conventions/background/` | Why the rules are what they are. | only when changing a rule |
 | `decisions/` | Technology and infrastructure choices that affect more than one project. | when it matters, or before proposing a new one |
@@ -75,10 +75,14 @@ to be reopened. Label those pull requests `area: rules` or `area: decisions`.
 The three-way split exists because rules and rationale want different readers, and mixing
 them makes both worse.
 
-**Rules are bare imperatives.** "Slugs are lowercase kebab-case." Not "slugs are lowercase
-because git refs are case-sensitive and preview URLs sanitize silently." The second invites a
-reader — human or agent — to reason about whether the rule applies to their case, which is how
-a settled decision gets relitigated. State the rule; put the argument in `background/`.
+**Rules lead with the imperative.** "Slugs are lowercase kebab-case." The argument for a
+rule — what else was considered and why it lost — invites a reader, human or agent, to reason
+about whether the rule applies to their case, which is how a settled decision gets relitigated.
+State the rule; put the argument in `background/`.
+
+**A short Why is not an argument.** A sentence or two saying what a rule protects, and what
+breaks without it, stays with the rule. Agents apply rules literally, and that reason is what
+tells them where a rule stops in a case its wording didn't anticipate.
 
 **Reference is lookup, not instruction.** Tables and procedures consulted while doing one
 specific thing. It is authoritative, but it does not tell you what to do.
