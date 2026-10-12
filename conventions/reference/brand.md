@@ -72,6 +72,21 @@ When a free application offers palettes:
 - **Credit the source.** Name the palette it comes from and link to it, in the application's
   README.
 
+## Typeface
+
+Our sites (itrium.id, tools.itrium.id, amber.itrium.id) set text in
+[Plus Jakarta Sans](https://github.com/tokotype/PlusJakartaSans), made by the Indonesian foundry
+Tokotype for Jakarta's city identity and free under the SIL Open Font License. We chose it over
+Inter, which has become the default look of generated applications.
+
+- **Served from our own site**, from the `@fontsource-variable/plus-jakarta-sans` package, with
+  the system's sans-serif after it as the fallback. Never from Google Fonts or another domain: it
+  would tell another company who visits, and our Content-Security-Policy blocks it anyway.
+- **One variable file covers every weight**, so use weights freely and don't add a second
+  typeface for headings.
+- **Desktop applications may keep the system's font**, which suits a window on that system
+  better.
+
 ## The logo
 
 An element tile: atomic number **39** in the corner, symbol **It** in the middle. Itrium is the
