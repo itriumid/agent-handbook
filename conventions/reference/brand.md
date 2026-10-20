@@ -86,6 +86,9 @@ Inter, which has become the default look of generated applications.
   typeface for headings.
 - **Desktop applications may keep the system's font**, which suits a window on that system
   better.
+- **Games draw their interface in Itrium Pixel**, our own pixel font, from
+  [itriumid/pixel-font](https://github.com/itriumid/pixel-font); see
+  [decision 0002](../../decisions/0002-shared-pixel-font.md).
 
 ## The logo
 
