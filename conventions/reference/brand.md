@@ -14,6 +14,7 @@ offer others as a choice (see [Other palettes](#other-palettes)).
 |---|---|---|
 | Graphite | `#2B2B2B` | Text on light backgrounds, dark backgrounds, the logo's tile |
 | Pastel pink | `#FEBFCA` | The one accent color: what's playing, what has focus, the primary action |
+| Rose text | `#A84D60` | Pink as text on light backgrounds, on itrium.id: section labels, links |
 | Deep rose | `#C46475` | Pink drawn as a line on light backgrounds: a border or outline that shows a state |
 | Off-white | `#F2F2F2` | Text on graphite |
 | Muted gray | `#AAAAAA` on dark, `#6B6B6B` on light | Secondary text |
@@ -31,8 +32,12 @@ README lists the tokens; see [decision 0001](../../decisions/0001-shared-palette
   border, outline or underline that shows a state (what's selected, what's pressed), and a
   checked box, radio button or slider, uses `#C46475`, which reaches 3:1 in the same hue. Pink
   fills stay pastel.
-- **Pink means something.** Use it for one thing at a time (playing, focus, or the primary
-  action), not as decoration.
+- **Pink means something.** In applications, use it for one thing at a time (playing, focus,
+  or the primary action), not as decoration.
+- **itrium.id may use pink more freely.** The website is the brand's front page, so besides the
+  primary action and focus it sets section labels, link underlines, hover borders, highlights
+  and a soft glow in pink. Pink text there follows the rules above: on light backgrounds it's
+  the deep rose `#A84D60` (7:1 on off-white), never pastel pink.
 - **Graphite, not black.** Use `#2B2B2B`, not `#000000`.
 - **Text meets level AA of the Web Content Accessibility Guidelines** (4.5:1 for body text) on
   every surface it sits on, not only the page background. Check raised surfaces too: the old
