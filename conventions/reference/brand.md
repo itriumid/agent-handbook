@@ -37,7 +37,7 @@ README lists the tokens; see [decision 0001](../../decisions/0001-shared-palette
 - **itrium.id may use pink more freely.** The website is the brand's front page, so besides the
   primary action and focus it sets section labels, link underlines, hover borders, highlights
   and a soft glow in pink. Pink text there follows the rules above: on light backgrounds it's
-  the deep rose `#A84D60` (7:1 on off-white), never pastel pink.
+  the deep rose `#A84D60` (4.8:1 on off-white, 5.4:1 on white), never pastel pink.
 - **Graphite, not black.** Use `#2B2B2B`, not `#000000`.
 - **Text meets level AA of the Web Content Accessibility Guidelines** (4.5:1 for body text) on
   every surface it sits on, not only the page background. Check raised surfaces too: the old
