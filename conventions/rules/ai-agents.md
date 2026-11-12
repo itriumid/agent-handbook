@@ -1,8 +1,16 @@
-# AI agents working in Itrium's repositories
+# What AI agents may write and do
 
-These apply to every AI coding tool and every model, whatever its defaults. Several add
-attribution automatically, so the default usually has to be overridden explicitly rather than
-merely not requested.
+These apply to every AI agent and every model, whatever its defaults: a coding tool in a
+terminal or an editor, an assistant in a chat window, an agent that runs unattended on a
+schedule or in a pipeline. Several add attribution automatically, so the default usually has to
+be overridden explicitly rather than merely not requested.
+
+**Most of this is written in the vocabulary of code, and it binds an agent doing any other work
+the same way.** Where a rule says *working tree*, read the draft, document or workspace the
+agent was handed. Where it says *commit, push or pull request*, read anything that sends,
+publishes, schedules, pays or deletes. Where it says *check*, read whatever would show the work
+is right: rereading the source, recomputing the figure, opening the result. A rule about
+something the task doesn't have — a lockfile, a hook — simply doesn't come up.
 
 ## At a glance
 
@@ -68,8 +76,8 @@ Approval for one of those is not approval for the next, or for a different one. 
 is not "push this", "note that this is worth an issue" is not "open the issue", and "open the
 pull request" is not "merge it".
 
-**Why.** These repositories are public, and several deploy from `main`. A push is published the
-moment it lands, and a merge ships. The cost of an unwanted push, message, or API call lands on
+**Why.** A push to a public repository is published the moment it lands, and where `main`
+deploys, a merge ships. The cost of an unwanted push, message, or API call lands on
 whoever authorized the task, not on the agent that sent it.
 
 ## Only ever read through `.handbook/`
