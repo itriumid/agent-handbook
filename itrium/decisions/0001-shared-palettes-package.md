@@ -49,4 +49,4 @@ pickers, and the contrast checker.
 - Itrium has a second public registry presence to look after, alongside the Homebrew tap: the
   npm organization's members and its two-factor authentication.
 - Client work doesn't use this package: it uses the client's brand
-  (`conventions/reference/brand.md`, Other palettes).
+  (`itrium/brand.md`, Other palettes).
