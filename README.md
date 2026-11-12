@@ -1,10 +1,13 @@
 # Agent Handbook
 
-The conventions for [Itrium](https://github.com/itriumid)'s projects: followed by every AI
-coding agent that works on them, and by everyone else who does too. Rules, the reasoning behind
-them, cross-project decisions, and the scaffolding each repository copies in. They're written
-for how Itrium works, not as general advice. One source of truth, read directly by whatever agent is working in a project, and
-by me when a rule needs changing.
+Conventions for working with AI agents on a project: what an agent may write and do, how
+branches and pull requests work, and the scaffolding a repository copies in to adopt them. They
+are followed by every agent that works on a project, and by everyone else who does too. One
+source of truth, read directly by whatever agent is working in a project.
+
+This is [Itrium](https://github.com/itriumid)'s handbook, kept so that it can be used on any
+project. Everything that only concerns Itrium — its brand, its house rules, its cross-project
+decisions — is under [`itrium/`](itrium/) and nowhere else.
 
 Nothing here is repository-specific. If a rule or a decision only makes sense in one codebase,
 it belongs in that codebase instead.
@@ -16,8 +19,8 @@ it belongs in that codebase instead.
 | `conventions/rules/` | Operative rules. Imperative, with a short Why where it marks a rule's edges; no argument. Includes what AI agents may write and do. | constantly |
 | `conventions/reference/` | Lookup material — label tables, procedures. | on demand |
 | `conventions/background/` | Why the rules are what they are. | only when changing a rule |
-| `decisions/` | Technology and infrastructure choices that affect more than one project. | when it matters, or before proposing a new one |
-| `scaffold/` | Files copied into other repositories. | once, at repository setup |
+| `itrium/` | What applies to Itrium's own projects only: house rules, the brand, cross-project decisions. | only on an Itrium project |
+| `scaffold/` | Files copied into other repositories: `common/` for any project, `itrium/` for what an Itrium project adds. | once, at repository setup |
 | `scripts/` | Tooling that runs against this repository or configures another one — not copied elsewhere. | when setting up a repository |
 | `.github/` | This repository's own checks and pull request template — not copied elsewhere; that's `scaffold/common/.github/`. | GitHub, on every pull request here |
 
@@ -52,6 +55,13 @@ these conventions — a broken link reads as "no conventions exist", silently.
 Then copy the scaffold in and configure the repository on GitHub — see
 [`scaffold/README.md`](scaffold/README.md).
 
+## Using it on your own projects
+
+Nothing above is particular to Itrium. Clone this repository, link it, and copy
+`scaffold/common/` in; leave `itrium/` and `scaffold/itrium/` alone, and no agent in your project
+is ever pointed at them. The checks the scaffold installs link back to the rules in this
+repository. To change a rule for yourself, fork it and link your fork instead.
+
 ## How changes reach every project
 
 Instantly. Every `.handbook` points at the same local clone, so `git pull` here updates every
@@ -66,8 +76,8 @@ on, immediately.**
 the branch naming and pull request conventions it defines, and a ruleset on `main` enforces
 it — see `scripts/configure-repository.sh`.
 
-**Before changing anything under `conventions/rules/` or `decisions/`, read the matching
-`background/` file.** The current rule is usually the considered outcome of the argument about
+**Before changing anything under `conventions/rules/`, `itrium/engineering.md` or
+`itrium/decisions/`, read the matching `background/` file.** The current rule is usually the considered outcome of the argument about
 to be reopened. Label those pull requests `area: rules` or `area: decisions`.
 
 ## Writing for this handbook

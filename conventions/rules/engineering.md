@@ -23,24 +23,16 @@ stay as they are — `API`, `URL`, `HTTP`, `ID` — since spelling those out wou
 clear, not more. So do names a framework or tool dictates, like `tauri.conf.json` or
 `vite.config.ts`.
 
-## Write in American English
-
-**Prose, comments and names use American spelling** — `color` not `colour`, `license` not
-`licence`, `behavior` not `behaviour`. Proper names and names a tool or standard dictates stay
-as they are.
-
 ## Build to level AA of the Web Content Accessibility Guidelines
 
-**Every interface we make meets level AA of the Web Content Accessibility Guidelines (WCAG)
-2.2**: our free applications, itrium.id and tools.itrium.id. Client work is built to level AA
-too, unless the client decides otherwise in writing. Level AAA isn't the target; it rules out
-too much, including a pastel palette like Rhodonite.
+**Every interface meets level AA of the Web Content Accessibility Guidelines (WCAG) 2.2.** Level
+AAA isn't the target; it rules out too much, including most pastel palettes.
 
 What that means in practice, and what a review checks:
 
 - **Contrast:** 4.5:1 for text, 3:1 for large text, focus outlines, and anything that is the
   only way to see a control or its state. Check every surface text sits on, not only the page
-  background. [`../reference/brand.md`](../reference/brand.md) has the numbers for our colors.
+  background.
 - **Color is never the only signal.** A state shown by color alone (selected, pressed, an
   error) also needs an edge, a shape, text or an icon that reaches 3:1.
 - **Everything works with a keyboard**, in a sensible order, with a visible focus outline.
@@ -48,5 +40,4 @@ What that means in practice, and what a review checks:
   screen reader can announce; icon-only buttons get an `aria-label`.
 - **People's settings win.** Respect light and dark, reduced motion and larger text.
 
-Where a check can run automatically, it runs in Continuous Integration: Honk's
-`tests/contrast.test.mjs` is the model for colors.
+Where a check can run automatically, it runs in Continuous Integration.

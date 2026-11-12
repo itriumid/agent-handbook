@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Links this handbook into a repository as `.handbook`, pointing at this repository's root —
-# conventions/, decisions/, and everything else this repository shares, all reachable from one
+# conventions/, itrium/, and everything else this repository shares, all reachable from one
 # link.
 #
 # The script resolves its own location, so the two repositories don't need any particular
