@@ -9,6 +9,11 @@ If `.handbook/` is missing, empty, or unreadable: **stop and say so.** Tell the 
 `agent-handbook/scripts/link.sh` against this repository. Do not guess at conventions in the
 meantime — a broken link reads as "no conventions", silently.
 
+**Resolving doesn't mean current.** `.handbook/` points at a local clone, and nothing refreshes
+it. The first time a task leans on it, check how old that clone is
+(`git -C .handbook log -1 --format=%cd`) and give the date with whatever rule you cite. Whether
+that is too old to rely on is the user's call; just don't assume it is current.
+
 ## Always
 
 These apply to every task.
