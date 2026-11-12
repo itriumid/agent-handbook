@@ -77,8 +77,9 @@ the branch naming and pull request conventions it defines, and a ruleset on `mai
 it — see `scripts/configure-repository.sh`.
 
 **Before changing anything under `conventions/rules/`, `itrium/engineering.md` or
-`itrium/decisions/`, read the matching `background/` file.** The current rule is usually the considered outcome of the argument about
-to be reopened. Label those pull requests `area: rules` or `area: decisions`.
+`itrium/decisions/`, read the matching `background/` file.** The current rule is usually the
+considered outcome of the argument about to be reopened. Label those pull requests `area: rules`
+or `area: decisions`.
 
 ## Writing for this handbook
 
