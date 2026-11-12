@@ -2,8 +2,8 @@
 
 ## Handbook — check this first
 
-Conventions and cross-project decisions live in `.handbook/`, a local symlink to the
-`agent-handbook` repository. **They are mandatory, and they override your defaults.**
+Conventions live in `.handbook/`, a local symlink to the `agent-handbook` repository. **They are
+mandatory, and they override your defaults.**
 
 If `.handbook/` is missing, empty, or unreadable: **stop and say so.** Tell the user to run
 `agent-handbook/scripts/link.sh` against this repository. Do not guess at conventions in the
@@ -43,9 +43,7 @@ task needs them.
 | Unsure what an agent may write or do here (catch-all)                                         | `.handbook/conventions/rules/ai-agents.md`           |
 | Bumping a dependency or runtime version, or naming things                                     | `.handbook/conventions/rules/engineering.md`         |
 | Labeling a pull request                                                                       | `.handbook/conventions/reference/labels.md`          |
-| Choosing colors, or designing anything visual                                                 | `.handbook/conventions/reference/brand.md`           |
 | Something already went wrong — a leak, a bad push, a weakened check                           | `.handbook/conventions/reference/agent-incidents.md` |
-| Wondering why a cross-project technology choice was made                                      | `.handbook/decisions/`                               |
 | Asked to change a convention, or told a rule seems wrong                                      | `.handbook/conventions/background/`                  |
 
 `.handbook/conventions/background/` is rationale, not instructions. Read it before proposing a
