@@ -1,8 +1,9 @@
 # Working on this handbook
 
-This repository is the source of truth for the conventions in every one of Itrium's
-projects. Editing it changes how every project is worked on, immediately — there is no version
-pinning and no per-repository pull request. Treat every change as having that blast radius.
+This repository is the source of truth for the conventions in every project that links it —
+Itrium's own, and anyone else's. Editing it changes how every one of them is worked on,
+immediately — there is no version pinning and no per-repository pull request. Treat every change
+as having that blast radius.
 
 ## Hard rules
 
@@ -16,6 +17,9 @@ pinning and no per-repository pull request. Treat every change as having that bl
 - **Do not add repository-specific content.** If it only applies to one codebase, it goes in
   that codebase. That includes build commands, known issues, and which checks a given
   repository runs.
+- **Keep what only concerns Itrium under `itrium/`.** Its brand, its house style, and decisions
+  about its own projects go there — never under `conventions/` or `scaffold/common/`, which other
+  people use on projects that have nothing to do with Itrium.
 - **Do not add project state** — action items, rollout checklists, TODOs, open questions.
   Those belong in the issue tracker. An agent reading unchecked boxes here may act on them.
 
@@ -26,7 +30,8 @@ pinning and no per-repository pull request. Treat every change as having that bl
 | `conventions/rules/` | operative rules | Does it tell someone what to do? |
 | `conventions/reference/` | lookup material | Do you consult it while doing one task? |
 | `conventions/background/` | rationale | Is it explaining *why* a rule exists? |
-| `decisions/` | cross-project technology and infrastructure decisions | Would getting this wrong affect more than one project? |
+| `itrium/` | rules and reference for Itrium's own projects | Would someone using this handbook on a project that isn't Itrium's have no use for it? |
+| `itrium/decisions/` | Itrium's cross-project technology and infrastructure decisions | Would getting this wrong affect more than one of Itrium's projects? |
 | `scaffold/` | files copied into other repositories | Does it get copied out of here? |
 | `scripts/` | tooling run from here | Does it run from this repository rather than get read or copied out of it? |
 
@@ -56,9 +61,9 @@ skipping it would behave incorrectly, it is a rule and it is in the wrong direct
    record never describes a rule that no longer exists.
 4. Label the pull request `area: rules` or `area: decisions`.
 
-For `decisions/`, check whether an existing file already covers the ground first. If the new
+For `itrium/decisions/`, check whether an existing file already covers the ground first. If the new
 one supersedes it, say so in both files rather than editing the old one into something else —
-see `decisions/README.md`.
+see `itrium/decisions/README.md`.
 
 ## Labels
 

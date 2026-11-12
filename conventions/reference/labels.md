@@ -5,7 +5,7 @@ set**, so these tables are the source of truth and the workflows are derived fro
 this file first.
 
 Palette is [Catppuccin Mocha](https://catppuccin.com/palette), except the two `status:`
-labels, which use the brand colors.
+labels, which use two colors from outside it.
 
 ## Code repositories
 
@@ -57,10 +57,11 @@ less load-bearing, so a long pull request list sorts visually by weight. `area: 
 at the same weight as `area: rules`. `area: scaffold` and `area: tooling` sit outside that ramp
 on purpose — they are a different kind of change.
 
-## Brand colors
+## The two status colors
 
-The `status:` labels use graphite `#2B2B2B` and pastel pink `#FEBFCA`. The full palette and how
-to use it are in [`brand.md`](brand.md).
+The `status:` labels use graphite `#2B2B2B` and pastel pink `#FEBFCA`, so they stand apart from
+the Catppuccin set in a list. They are Itrium's colors; on an Itrium project, the full palette
+and how to use it are in [`../../itrium/brand.md`](../../itrium/brand.md).
 
 ## One thing to watch on release notes
 
