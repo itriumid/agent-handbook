@@ -9,8 +9,9 @@
 # `gh`. Idempotent — safe to re-run, and re-running is how drifted settings get put back.
 #
 # The ruleset requires the `Branch name` and `Commit messages` checks from
-# scaffold/common/.github/workflows/pull-request-checks.yml. A pull request that adds that workflow can still merge under the ruleset:
-# pull_request workflows run from the pull request's own copy of the file.
+# scaffold/common/.github/workflows/pull-request-checks.yml. A pull request that adds that
+# workflow can still merge under the ruleset: pull_request workflows run from the pull request's
+# own copy of the file.
 #
 # Rulesets need a public repository, or a paid plan for a private one. On a private repository
 # on GitHub Free the merge settings still apply and the ruleset step is reported as skipped.

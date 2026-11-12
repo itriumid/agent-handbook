@@ -65,8 +65,9 @@ When a free application offers palettes:
   picks between them, and follows the system unless someone chooses otherwise.
 - **Every palette meets the same bar as Rhodonite**, in both versions: 4.5:1 for text and
   secondary text on every surface, for text on the accent, and for text on an accent tint;
-  3:1 for the focus outline and for accent lines that show a state. A popular palette is adapted until it passes, not shipped as it
-  comes, and the adaptations are written down next to the colors.
+  3:1 for the focus outline and for accent lines that show a state. A popular palette is
+  adapted until it passes, not shipped as it comes, and the adaptations are written down next to
+  the colors.
 - **A test checks it.** Palettes come from `@itrium/palettes`, which checks every one before it
   can be published, working out each palette in every theme state from the stylesheet. An
   application that offers palettes also runs the package's checker in Continuous Integration,
