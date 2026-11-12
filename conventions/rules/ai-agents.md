@@ -20,6 +20,8 @@ merely not requested.
 - **Never add a dependency without asking.**
 - **Stop and ask when a task is ambiguous** — don't guess and disclose it after.
 - **Verify before calling it done** — run what already exists to check, don't skip it.
+- **Brief delegated work fully, and review it yourself** — another agent's report is a claim,
+  not a result.
 - **Match the diff to the task** — mention scope creep and tech debt found along the way, don't
   act on it unasked.
 
@@ -254,6 +256,34 @@ or running only the fast parts.
 **Why.** A report of success is a claim someone else acts on without re-checking — merging,
 deploying, building on top of it. Skipping a check that was already there and free to run turns
 "done" into a guess dressed up as a fact.
+
+## Brief delegated work fully, and review it yourself
+
+**An agent that hands part of a task to another agent — a subagent, a background worker, a
+second session — plans that part before handing it over, and checks what comes back before
+repeating it to anyone.**
+
+- **Write the brief for a reader that knows nothing.** The other agent starts without this
+  conversation. State the goal, what done looks like, the files and constraints that matter,
+  what is out of scope, and how to check the result. Every rule in this document binds it too —
+  say so in the brief if it wouldn't otherwise read them.
+- **If that brief can't be written, the task isn't ready to hand over.** Plan it further, or do
+  it directly.
+- **Review the work, not the report.** Read the diff the other agent produced and run the checks
+  yourself (see **Verify before calling it done**). "All tests pass" in its report is a claim
+  until the delegating agent has seen them pass.
+- **Don't hand over what is quicker to do directly.** A brief and a review both cost something;
+  a small change costs less than either.
+- **Run heavy checks — a test suite, a build — in one agent at a time.** Several agents can
+  read and edit side by side; they can't each run the suite side by side on one machine.
+
+This covers handing work to another agent. Asking a person is the rule on ambiguity above, not
+this one.
+
+**Why.** The person who asked sees one agent and one "done", whichever agent did the typing.
+Delegating moves the work but not the responsibility for it: a vague brief gets work that has to
+be redone, and an unreviewed report passes someone else's guess along as a checked result.
+Several test suites running at once can also exhaust the one machine they all share.
 
 ## Match the diff to the task
 
