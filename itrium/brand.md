@@ -55,8 +55,8 @@ Our free applications can let people pick another palette, the way Honk offers a
 **Only our free applications.** Everything else has one palette and no picker:
 
 - **Client work** uses the client's brand, not ours and not a palette menu.
-- **Itrium's own sites**, itrium.id and the web tools on tools.itrium.id, use Rhodonite only.
-  They're the brand, not a preference.
+- **Itrium's own sites**, itrium.id and Flint, the web tools on flint.itrium.id, use Rhodonite
+  only. They're the brand, not a preference.
 
 When a free application offers palettes:
 
@@ -80,7 +80,7 @@ When a free application offers palettes:
 
 ## Typeface
 
-Our sites (itrium.id, tools.itrium.id, amber.itrium.id) set text in
+Our sites (itrium.id, flint.itrium.id, amber.itrium.id) set text in
 [Plus Jakarta Sans](https://github.com/tokotype/PlusJakartaSans), made by the Indonesian foundry
 Tokotype for Jakarta's city identity and free under the SIL Open Font License. We chose it over
 Inter, which has become the default look of generated applications.
