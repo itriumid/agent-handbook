@@ -13,7 +13,7 @@ as they are.
 ## Which interfaces meet level AA
 
 **The level AA rule in `conventions/rules/engineering.md` covers our free applications,
-itrium.id and tools.itrium.id. Client work is built to level AA too, unless the client decides
+itrium.id and flint.itrium.id. Client work is built to level AA too, unless the client decides
 otherwise in writing.**
 
 - [`brand.md`](brand.md) has the contrast numbers for our colors. Rhodonite is a pastel palette,
