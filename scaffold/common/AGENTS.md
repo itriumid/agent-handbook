@@ -32,6 +32,8 @@ These apply to every task.
 - **When you hand work to another agent, brief it fully and review what it returns yourself.**
   Its report is a claim until you have read the diff and run the checks. Run a test suite or a
   build in one agent at a time.
+- **Write commit messages and pull request descriptions for a reader who wasn't in the
+  conversation.** No "you chose", "I ran" or "as discussed": say what changed and why.
 - **Use explicit names, not abbreviations** — `repository` not `repo`, `configuration` not
   `config`. Terms of art (`API`, `URL`, `ID`) and tool-dictated filenames are exempt.
 
