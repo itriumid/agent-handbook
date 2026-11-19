@@ -116,6 +116,24 @@ or "address review comments" commit is permanent history. See **Commits** in
 **Why the merge-commit message setting matters.** Without *Pull request title and description*,
 GitHub generates `Merge pull request #123 from owner/feature/12-oauth` — noise.
 
+## Why descriptions are written for someone who wasn't there
+
+An agent writes the pull request description at the end of the session that produced the
+change, and the natural register there is a reply: "You chose…", "I took…", "Three things worth
+knowing before merging". The description then becomes the merge commit body, where the person
+it replied to is no longer the reader.
+
+Nothing else catches it. The three headings are filled in, nobody is named and no vendor
+appears, so **No self-attribution** and its check both pass. That is why it is its own rule.
+
+"I" is ruled out along with "you" even though every commit has an author. The author on record
+is a person; the "I" in an agent-written description is the agent's, so the record says a
+person ran checks they may never have seen.
+
+There is no mechanical check. "You" turns up legitimately in quoted interface text and in
+descriptions of what a user sees, and a pattern narrow enough to leave those alone misses most
+of the cases the rule is for. If the rule doesn't hold, a narrow check is the next step.
+
 ## Why head branches are deleted automatically
 
 In a promotion flow a branch merges several times, so deleting it after the first merge orphans

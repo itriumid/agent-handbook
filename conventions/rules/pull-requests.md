@@ -30,6 +30,8 @@ permanently.
 - Imperative mood, same as pull request titles: "Add", not "Added" or "Adds".
 - No self-attribution in the message — see [`ai-agents.md`](ai-agents.md). That rule covers
   every commit, not just the pull request title.
+- Write the body for a reader who wasn't there — see **Write for a reader who wasn't there**
+  below.
 - A review-feedback or bug-fix commit gets a real, descriptive message — never "address review
   comments" or "fix" — since it lands in history exactly as written.
 
@@ -40,6 +42,29 @@ The repository template is applied automatically. Fill it in; don't replace it.
 - **Why**, **What changed**, **How to verify** — every pull request, even a one-line chore.
 - **Write `Closes #12`** under Why when the pull request resolves an issue. Nothing else
   auto-closes it.
+
+### Write for a reader who wasn't there
+
+The description becomes the body of the merge commit, and the people who read it later never saw
+the request, the chat or the session that produced the change. The same goes for the body of a
+commit message.
+
+- **No "you", "I" or "we" for the people behind the change.** Say what was decided: "Backups
+  are scrambled by default, with an optional passphrase", not "You chose scrambled by
+  default". Say what was checked: "Ran the job's commands against Postgres 16", not "I ran".
+  "You" for the product's users, or inside quoted interface text, is fine.
+- **The Why is the problem, not the request.** "You asked for a bolder light mode" is not a
+  reason; say what was wrong. When a person's decision is the reason, name their role and give
+  their reason.
+- **Describe the change, not the session.** Leave out the order the work happened in, scores
+  from the run, and "the highest so far". Keep a rejected alternative only when it explains the
+  result.
+- **What must happen before merging is a step under How to verify**, or a comment on the pull
+  request when it is an operational step such as renaming a deployment. Not a "worth knowing
+  before merging" paragraph: it goes stale at merge and stays in history.
+
+**Why.** A description written as a reply only makes sense to the person it replied to. Anyone
+reading `git log` later gets "you chose" with no way to find out who chose, or why.
 
 ## Work in progress
 
