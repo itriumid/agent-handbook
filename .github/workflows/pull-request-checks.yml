@@ -226,7 +226,7 @@ jobs:
               if (isDescription && /\bstacked on #\d+|\bmerge (that|#\d+|it) first\b/i.test(outsideVerify)) {
                 findings.push('has a merge-order note outside How to verify');
               }
-            if (isDescription && /\bbefore merging\b/i.test(outsideVerify)) {
+              if (isDescription && /\bbefore merging\b/i.test(outsideVerify)) {
                 findings.push('has a "before merging" note outside How to verify');
               }
               return findings;
