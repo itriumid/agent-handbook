@@ -165,6 +165,9 @@ jobs:
               let current = null;
               let fence = null;
               let quoted = false;
+              // A line left out of the prose leaves a blank line in its place, so a code span can't
+              // reach across a fence, a quote or a heading.
+              const skip = () => proseLines.push({ line: '', section: current });
               const countAsContent = (line) => {
                 if (current && !/^---\s*$/.test(line) && !/^\s*- \[[ x]\].*(Merging with|label applied)/i.test(line)) {
                   sections[current] += line.trim();
@@ -175,6 +178,7 @@ jobs:
                   const closing = line.match(/^ {0,3}(`+|~+)\s*$/);
                   if (closing && closing[1][0] === fence[0] && closing[1].length >= fence.length) fence = null;
                   else countAsContent(line);
+                  skip();
                   continue;
                 }
                 // A backtick fence's info string can't contain a backtick: ```a``` on one line is inline code.
@@ -182,6 +186,7 @@ jobs:
                 if (opening) {
                   fence = opening[1];
                   quoted = false;
+                  skip();
                   continue;
                 }
                 const heading = line.match(/^##\s+(.+?)\s*$/);
@@ -189,7 +194,9 @@ jobs:
                   current = heading[1];
                   sections[current] = '';
                   quoted = false;
+                  skip();
                   proseLines.push({ line, section: current });
+                  skip();
                   continue;
                 }
                 countAsContent(line);
@@ -197,11 +204,13 @@ jobs:
                 if (quote) {
                   // Only a quoted paragraph runs on into lines without a `>`; a quoted heading, rule or
                   // fence doesn't.
-                  quoted = Boolean(quote[1].trim()) && !/^(#{1,6}\s|-{3,}\s*$|`{3,}|~{3,})/.test(quote[1]);
+                  quoted = Boolean(quote[1].trim()) && !/^(#{1,6}\s|-{3,}\s*$|`{3,}(?=[^`]*$)|~{3,})/.test(quote[1]);
+                  skip();
                   continue;
                 }
                 if (!line.trim() || /^\s*([-*+]\s|1[.)]\s|#{1,6}\s|-{3,}\s*$)/.test(line)) quoted = false;
-                if (!quoted) proseLines.push({ line, section: current });
+                if (quoted) skip();
+                else proseLines.push({ line, section: current });
               }
 
               // Words inside code, quotes and comments are someone else's: interface copy, commands, the
