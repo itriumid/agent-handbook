@@ -168,7 +168,7 @@ jobs:
                 if (heading) {
                   current = heading[1];
                   sections[current] = '';
-                } else if (current && !/^---\s*$/.test(line) && !/^\s*- \[[ x]\]/i.test(line)) {
+                } else if (current && !/^---\s*$/.test(line) && !/^\s*- \[[ x]\].*(Merging with|label applied)/i.test(line)) {
                   sections[current] += line.trim();
                 }
                 if (fence) {
