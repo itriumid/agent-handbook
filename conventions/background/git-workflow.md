@@ -130,9 +130,21 @@ appears, so **No self-attribution** and its check both pass. That is why it is i
 is a person; the "I" in an agent-written description is the agent's, so the record says a
 person ran checks they may never have seen.
 
-There is no mechanical check. "You" turns up legitimately in quoted interface text and in
-descriptions of what a user sees, and a pattern narrow enough to leave those alone misses most
-of the cases the rule is for. If the rule doesn't hold, a narrow check is the next step.
+The rule started without a mechanical check, because "you" turns up legitimately in quoted
+interface text and in descriptions of what a user sees. It didn't hold: within days, pull
+requests were merging without the template's headings and with design-review narration. So the
+**Commit messages** check now carries a narrow one.
+
+The check matches phrasings, not pronouns: "you chose", "I ran", "as agreed", "scored 32/40",
+"worth knowing", a missing or empty heading, an unticked box. A bare "you", "we" or "our" is
+never flagged. It is too often the product's user, a quoted label ("How we work") or the
+organization speaking as itself. Text in code, quotes, blockquotes and comments is skipped.
+
+It was tuned against a few hundred real pull requests and about a thousand commits. It caught
+four in five of the descriptions that broke the rule, and flagged nothing that followed it. What
+it misses needs reading: "the owner asked for" as a Why, a team's "our" in its own prose. That
+stays the rule's job. Patterns wide enough to catch it would fail correct descriptions, and a
+check that fails good work gets switched off.
 
 ## Why head branches are deleted automatically
 
