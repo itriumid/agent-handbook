@@ -62,8 +62,9 @@ commit message.
 - **What must happen before merging is a step under How to verify**, or a comment on the pull
   request when it is an operational step such as renaming a deployment. Not a "worth knowing
   before merging" paragraph: it goes stale at merge and stays in history.
-- **No open checkboxes or "To do" lists.** A step still to be done is written as a step under
-  How to verify. An unticked box stays unticked in history, and the next agent may act on it.
+- **No open checkboxes or "To do" lists.** Write each item as a step under How to verify, or
+  as a comment when it is an operational step. An unticked box stays unticked in history, and
+  the next agent may act on it.
 
 The **Commit messages** check fails a description with a missing or empty heading, and the most
 common reply phrasings in descriptions and commit messages. It is deliberately narrow: passing
