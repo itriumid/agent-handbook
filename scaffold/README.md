@@ -18,7 +18,7 @@ cp -R ~/wherever/agent-handbook/scaffold/common/. path/to/project/
 | `AGENTS.md` | Entrypoint template. Repository-owned after copying; fill in its last section. |
 | `CLAUDE.md` | Imports `AGENTS.md`, then adds the little that applies to Claude Code only. Needed because Claude Code reads `CLAUDE.md`, not `AGENTS.md`. |
 | `.claude/settings.json` | Claude Code's shared project settings: default models, no attribution, and hard blocks behind a few rules. See **Claude Code settings** below. |
-| `.github/workflows/pull-request-checks.yml` | The `Branch name` and `Commit messages` checks the ruleset requires. |
+| `.github/workflows/pull-request-checks.yml` | The `Branch name` and `Commit messages` checks the ruleset requires. `Commit messages` also checks the description's headings and catches text written as a reply. |
 | `.github/workflows/label-sync.yml` | Provisions the standard label set. Manual dispatch only. |
 | `.github/pull_request_template.md` | Applied automatically to every pull request. |
 | `.github/ISSUE_TEMPLATE/` | The *Technical debt* form, plus its config. |
