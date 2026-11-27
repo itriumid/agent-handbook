@@ -168,6 +168,8 @@ jobs:
               // A line left out of the prose leaves a blank line in its place, so a code span can't
               // reach across a fence, a quote or a heading.
               const skip = () => proseLines.push({ line: '', section: current });
+              const rule = /^ {0,3}([-*_])(?:[ \t]*\1){2,}[ \t]*$/;
+              const listItem = /^\s*([-*+]|\d+[.)])\s/;
               const countAsContent = (line) => {
                 if (current && !/^---\s*$/.test(line) && !/^\s*- \[[ x]\].*(Merging with|label applied)/i.test(line)) {
                   sections[current] += line.trim();
@@ -204,13 +206,19 @@ jobs:
                 if (quote) {
                   // Only a quoted paragraph runs on into lines without a `>`; a quoted heading, rule or
                   // fence doesn't.
-                  quoted = Boolean(quote[1].trim()) && !/^(#{1,6}\s|-{3,}\s*$|`{3,}(?=[^`]*$)|~{3,})/.test(quote[1]);
+                  quoted =
+                    Boolean(quote[1].trim()) && !rule.test(quote[1]) && !/^(#{1,6}\s|`{3,}(?=[^`]*$)|~{3,})/.test(quote[1]);
                   skip();
                   continue;
                 }
-                if (!line.trim() || /^\s*([-*+]\s|1[.)]\s|#{1,6}\s|-{3,}\s*$)/.test(line)) quoted = false;
-                if (quoted) skip();
-                else proseLines.push({ line, section: current });
+                if (!line.trim() || rule.test(line) || /^\s*([-*+]\s|1[.)]\s|#{1,6}\s)/.test(line)) quoted = false;
+                if (quoted) {
+                  skip();
+                } else {
+                  // A list item starts a new block, so a code span can't run into it from the line above.
+                  if (listItem.test(line)) skip();
+                  proseLines.push({ line, section: current });
+                }
               }
 
               // Words inside code, quotes and comments are someone else's: interface copy, commands, the

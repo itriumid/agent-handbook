@@ -87,6 +87,8 @@ const cases = [
   { name: 'reply phrasing after a quoted heading', input: { body: describe({ changed: '> ## Example\nI ran the regression suite.' }) }, fails: ['narrates as "I": "I ran"'] },
   { name: 'an unclosed backtick before a blank line', input: { body: describe({ changed: 'Removes `I ran\n\nfrom the log`.' }) }, fails: ['narrates as "I": "I ran"'] },
   { name: 'reply phrasing between unclosed backticks either side of a fence', input: { body: describe(), commits: ['Fix rounding\n\nAn unmatched `opener.\n```text\n```\nI checked the result.\nAn unmatched `closer.'] }, fails: ['narrates as "I": "I checked"'] },
+  { name: 'reply phrasing between unclosed backticks in two list items', input: { body: describe(), commits: ['Fix rounding\n\n- `one\n- I checked two`'] }, fails: ['narrates as "I": "I checked"'] },
+  { name: 'reply phrasing after a quoted rule written with asterisks', input: { body: describe({ changed: '> ***\nI checked the result.' }) }, fails: ['narrates as "I": "I checked"'] },
   { name: 'a decision reported as "you"', input: { body: describe({ why: 'You chose scrambled backups by default.' }) }, fails: ['reports a decision as "you" or "we": "You chose"'] },
   { name: 'the requester addressed', input: { body: describe({ why: 'Per your feedback, rounding is fixed.' }) }, fails: ['addresses the requester'] },
   { name: 'narration as "I"', input: { body: describe({ verify: "I ran the job's commands against Postgres 16." }) }, fails: ['narrates as "I": "I ran"'] },
