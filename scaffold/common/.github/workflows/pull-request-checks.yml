@@ -158,8 +158,8 @@ jobs:
               // same character, at least as long, with only whitespace after it. A heading inside one is an example,
               // not a section. The lines between the fences count as content of the section around them, so
               // a command-only How to verify isn't empty; the fence lines themselves don't.
-              // A blockquote runs until a blank line or the start of a new list item, heading or rule,
-              // including paragraph continuation lines without a `>`.
+              // A blockquote runs until a blank line or a line that starts a new block: a bullet, a numbered
+              // list starting at 1, a heading or a rule. Other lines without a `>` continue the quote.
               const proseLines = [];
               const sections = {};
               let current = null;
@@ -194,7 +194,7 @@ jobs:
                 }
                 countAsContent(line);
                 if (/^\s*>/.test(line)) quoted = true;
-                else if (!line.trim() || /^\s*([-*+]\s|\d+[.)]\s|#{1,6}\s|-{3,}\s*$)/.test(line)) quoted = false;
+                else if (!line.trim() || /^\s*([-*+]\s|1[.)]\s|#{1,6}\s|-{3,}\s*$)/.test(line)) quoted = false;
                 if (!quoted) proseLines.push({ line, section: current });
               }
 

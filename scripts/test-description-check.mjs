@@ -66,6 +66,7 @@ const cases = [
   { name: 'reply phrasing on a blockquote\'s continuation line', input: { body: describe({ changed: '> The old banner said:\nI ran out of space.\n\nThe banner is gone.' }) }, fails: [] },
   { name: 'reply phrasing after a mixed-character line inside a fence', input: { body: describe({ changed: 'The example:\n\n```\n```~~~\nI added a flag\n```' }) }, fails: [] },
   { name: 'a fenced-looking line that is inline code', input: { body: describe({ why: '```total()``` rounded down, so invoices were a cent short.' }) }, fails: [] },
+  { name: 'a numbered line that continues a blockquote', input: { body: describe({ changed: '> Previous release notes:\n2. I ran the migration.\n\nThe notes are gone.' }) }, fails: [] },
   { name: 'a Dependabot pull request without headings', input: { body: 'Bumps actions/checkout from 6 to 7.', user: 'dependabot[bot]', commitAuthor: 'dependabot[bot]', commits: ['Bump actions/checkout\n\nI ran nothing.'] }, fails: [] },
   { name: 'a revert made by GitHub\'s button', input: { body: 'Reverts owner/repo#12', ref: 'revert-12-fix/rounding' }, fails: [] },
 
