@@ -1,0 +1,29 @@
+name: Check Tests
+
+# Runs scripts/test-description-check.mjs when the pull request checks or their tests change. The
+# description check's script is inline in the workflow, so this is the only place it is tested.
+# This workflow is the handbook's own; it isn't part of the scaffold and isn't a required check.
+on:
+  pull_request:
+    paths:
+      - .github/workflows/pull-request-checks.yml
+      - .github/workflows/check-tests.yml
+      - scaffold/common/.github/workflows/pull-request-checks.yml
+      - scaffold/common/.github/pull_request_template.md
+      - scripts/test-description-check.mjs
+
+permissions: {}
+
+jobs:
+  description-check:
+    name: Description check tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Run the description check against its fixtures
+        run: node scripts/test-description-check.mjs

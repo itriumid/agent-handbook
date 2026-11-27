@@ -32,6 +32,12 @@ that isn't Itrium's leaves it out, and is never pointed at any of that.
 repository root, so `scaffold/common/.github/workflows/*.yml` is inert here. That is intentional
 — don't "fix" it by moving them.
 
+**`pull-request-checks.yml` exists twice and must stay identical**: the root copy runs on this
+repository's pull requests, the scaffold copy is what gets installed. Edit one, copy it over the
+other, then run `node scripts/test-description-check.mjs`. It runs the description check against
+a set of good and bad descriptions, and fails if the two copies differ. The **Check Tests**
+workflow runs it on any pull request that touches either copy.
+
 **Scaffold Markdown is kept Prettier-formatted** (`prettier --check scaffold/common`), so copies
 pass in projects that lint Markdown. Leave the YAML alone: its quote style depends on each
 project's Prettier config, so no one formatting can satisfy all of them.
