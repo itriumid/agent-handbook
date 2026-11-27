@@ -154,41 +154,62 @@ jobs:
               const findings = [];
               const text = (body || '').replace(/\r\n/g, '\n').replace(/<!--[\s\S]*?-->/g, '');
 
-              // Fenced blocks open with three or more backticks or tildes and close only on a fence of the
-              // same character at least as long. A heading inside one is an example, not a section; its
-              // lines still count as content of the section around it, so a command-only How to verify
-              // isn't empty.
-              const outsideFences = [];
+              // Fenced blocks open with three or more backticks or tildes and close only on a line of the
+              // same character, at least as long, with only whitespace after it. A heading inside one is an example,
+              // not a section. The lines between the fences count as content of the section around them, so
+              // a command-only How to verify isn't empty; the fence lines themselves don't.
+              // A blockquote runs until a blank line, including continuation lines without a `>`.
+              const proseLines = [];
               const sections = {};
               let current = null;
               let fence = null;
+              let quoted = false;
+              const countAsContent = (line) => {
+                if (current && !/^---\s*$/.test(line) && !/^\s*- \[[ x]\].*(Merging with|label applied)/i.test(line)) {
+                  sections[current] += line.trim();
+                }
+              };
               for (const line of text.split('\n')) {
-                const marker = line.match(/^ {0,3}(`{3,}|~{3,})/);
-                const heading = !fence && !marker && line.match(/^##\s+(.+?)\s*$/);
+                if (fence) {
+                  const closing = line.match(/^ {0,3}(`+|~+)\s*$/);
+                  if (closing && closing[1][0] === fence[0] && closing[1].length >= fence.length) fence = null;
+                  else countAsContent(line);
+                  continue;
+                }
+                const opening = line.match(/^ {0,3}(`{3,}|~{3,})/);
+                if (opening) {
+                  fence = opening[1];
+                  quoted = false;
+                  continue;
+                }
+                const heading = line.match(/^##\s+(.+?)\s*$/);
                 if (heading) {
                   current = heading[1];
                   sections[current] = '';
-                } else if (current && !/^---\s*$/.test(line) && !/^\s*- \[[ x]\].*(Merging with|label applied)/i.test(line)) {
-                  sections[current] += line.trim();
+                  quoted = false;
+                  proseLines.push({ line, section: current });
+                  continue;
                 }
-                if (fence) {
-                  if (marker && marker[1][0] === fence[0] && marker[1].length >= fence.length &&
-                      /^ {0,3}[`~]+\s*$/.test(line)) fence = null;
-                } else if (marker) {
-                  fence = marker[1];
-                } else {
-                  outsideFences.push(line);
-                }
+                countAsContent(line);
+                if (/^\s*>/.test(line)) quoted = true;
+                else if (!line.trim()) quoted = false;
+                if (!quoted) proseLines.push({ line, section: current });
               }
 
               // Words inside code, quotes and comments are someone else's: interface copy, commands, the
-              // template's own instructions.
-              const prose = outsideFences
-                .join('\n')
-                .replace(/`[^`\n]*`/g, '')
-                .replace(/^\s*>.*$/gm, '')
-                .replace(/"[^"\n]*"|“[^”\n]*”/g, '')
-                .replace(/(^|[^*\w])\*(?!\*)[^*\n]+\*(?!\*)/g, '$1');
+              // template's own instructions. A code span's delimiter is a run of backticks closed by a run of
+              // the same length, so ``a `b` `` is one span.
+              const strip = (lines) =>
+                lines
+                  .map(({ line }) => line)
+                  .join('\n')
+                  .replace(/(`+)(?!`)[^\n]*?(?<!`)\1(?!`)/g, '')
+                  .replace(/"[^"\n]*"|“[^”\n]*”/g, '')
+                  .replace(/(^|[^*\w])\*(?!\*)[^*\n]+\*(?!\*)/g, '$1');
+              const prose = strip(proseLines);
+              const outsideVerify = isDescription
+                ? strip(proseLines.filter(({ section }) => section !== 'How to verify'))
+                : prose;
 
               if (isDescription) {
                 for (const heading of ['Why', 'What changed', 'How to verify']) {
@@ -199,7 +220,6 @@ jobs:
 
               // Narrow on purpose: each pattern is a reply to the requester or an account of the session,
               // never a description of what a user sees.
-              const outsideVerify = isDescription ? prose.split(/^##\s+How to verify\s*$/m)[0] : prose;
               const phrases = [
                 { pattern: /\b(you|we)\s+(asked|chose|picked|wanted|preferred|approved|agreed|decided|requested|rejected)\b/i, reason: 'reports a decision as "you" or "we"' },
                 { pattern: /\byour\s+(call|choice|decisions?|requests?|asks?|feedback|picks?)\b/i, reason: 'addresses the requester' },
