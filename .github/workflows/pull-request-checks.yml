@@ -158,8 +158,8 @@ jobs:
               // same character, at least as long, with only whitespace after it. A heading inside one is an example,
               // not a section. The lines between the fences count as content of the section around them, so
               // a command-only How to verify isn't empty; the fence lines themselves don't.
-              // A blockquote runs until a blank line or a line that starts a new block: a bullet, a numbered
-              // list starting at 1, a heading or a rule. Other lines without a `>` continue the quote.
+              // A quoted paragraph runs until a blank line or a line that starts a new block: a bullet, a
+              // numbered list starting at 1, a heading or a rule. Other lines without a `>` continue it.
               const proseLines = [];
               const sections = {};
               let current = null;
@@ -193,19 +193,26 @@ jobs:
                   continue;
                 }
                 countAsContent(line);
-                if (/^\s*>/.test(line)) quoted = true;
-                else if (!line.trim() || /^\s*([-*+]\s|1[.)]\s|#{1,6}\s|-{3,}\s*$)/.test(line)) quoted = false;
+                const quote = line.match(/^\s*>\s?(.*)$/);
+                if (quote) {
+                  // Only a quoted paragraph runs on into lines without a `>`; a quoted heading, rule or
+                  // fence doesn't.
+                  quoted = Boolean(quote[1].trim()) && !/^(#{1,6}\s|-{3,}\s*$|`{3,}|~{3,})/.test(quote[1]);
+                  continue;
+                }
+                if (!line.trim() || /^\s*([-*+]\s|1[.)]\s|#{1,6}\s|-{3,}\s*$)/.test(line)) quoted = false;
                 if (!quoted) proseLines.push({ line, section: current });
               }
 
               // Words inside code, quotes and comments are someone else's: interface copy, commands, the
               // template's own instructions. A code span opens on a whole run of backticks and closes on a run
-              // of the same length, so ``a `b` `` is one span and ``a` is no span at all.
+              // of the same length, so ``a `b` `` is one span and ``a` is no span at all. A span can wrap onto
+              // the next line, as in a commit body wrapped at 72 columns, but not past a blank line.
               const strip = (lines) =>
                 lines
                   .map(({ line }) => line)
                   .join('\n')
-                  .replace(/(?<!`)(`+)(?!`)[^\n]*?(?<!`)\1(?!`)/g, '')
+                  .replace(/(?<!`)(`+)(?!`)(?:[^\n]|\n(?![ \t]*\n))*?(?<!`)\1(?!`)/g, '')
                   .replace(/"[^"\n]*"|“[^”\n]*”/g, '')
                   .replace(/(^|[^*\w])\*(?!\*)[^*\n]+\*(?!\*)/g, '$1');
               const prose = strip(proseLines);
