@@ -152,13 +152,28 @@ jobs:
             // the rule. See conventions/background/git-workflow.md.
             function reviewDescription(body, { isDescription }) {
               const findings = [];
-              const text = (body || '').replace(/\r\n/g, '\n');
+              const text = (body || '').replace(/\r\n/g, '\n').replace(/<!--[\s\S]*?-->/g, '');
+
+              // Fenced blocks open with three or more backticks or tildes and close only on a fence of the
+              // same character at least as long.
+              const outsideFences = [];
+              let fence = null;
+              for (const line of text.split('\n')) {
+                const marker = line.match(/^ {0,3}(`{3,}|~{3,})/);
+                if (fence) {
+                  if (marker && marker[1][0] === fence[0] && marker[1].length >= fence.length &&
+                      /^ {0,3}[`~]+\s*$/.test(line)) fence = null;
+                } else if (marker) {
+                  fence = marker[1];
+                } else {
+                  outsideFences.push(line);
+                }
+              }
 
               // Words inside code, quotes and comments are someone else's: interface copy, commands, the
               // template's own instructions.
-              const prose = text
-                .replace(/<!--[\s\S]*?-->/g, '')
-                .replace(/```[\s\S]*?```/g, '')
+              const prose = outsideFences
+                .join('\n')
                 .replace(/`[^`\n]*`/g, '')
                 .replace(/^\s*>.*$/gm, '')
                 .replace(/"[^"\n]*"|“[^”\n]*”/g, '')
@@ -167,7 +182,9 @@ jobs:
               if (isDescription) {
                 const sections = {};
                 let current = null;
-                for (const line of prose.split('\n')) {
+                // Read from the text with only comments removed: a section holding nothing but a
+                // command block still has content.
+                for (const line of text.split('\n')) {
                   const heading = line.match(/^##\s+(.+?)\s*$/);
                   if (heading) {
                     current = heading[1];
@@ -199,7 +216,6 @@ jobs:
                 { pattern: /\b(today's|yesterday's|this morning's|afternoon|evening|morning|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth) (critique|review)\b/i, reason: 'narrates the session' },
                 { pattern: /\b(this|last|next|previous|another) round\b|\b(design|playtest) round\b/i, reason: 'narrates the session' },
                 { pattern: /^\s*(?:[-*]\s+)?(?:\*\*)?(To do|Still to do|Still needed|Still to come|Not yet|Next steps?|Follow-ups?)\b[^\n]*:/m, reason: 'lists unfinished work' },
-                { pattern: /\bstep \d+ of\b/i, reason: 'narrates the session' },
               ];
               for (const { pattern, reason } of phrases) {
                 const match = prose.match(pattern);
