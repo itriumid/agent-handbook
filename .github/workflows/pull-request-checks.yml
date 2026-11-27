@@ -155,11 +155,22 @@ jobs:
               const text = (body || '').replace(/\r\n/g, '\n').replace(/<!--[\s\S]*?-->/g, '');
 
               // Fenced blocks open with three or more backticks or tildes and close only on a fence of the
-              // same character at least as long.
+              // same character at least as long. A heading inside one is an example, not a section; its
+              // lines still count as content of the section around it, so a command-only How to verify
+              // isn't empty.
               const outsideFences = [];
+              const sections = {};
+              let current = null;
               let fence = null;
               for (const line of text.split('\n')) {
                 const marker = line.match(/^ {0,3}(`{3,}|~{3,})/);
+                const heading = !fence && !marker && line.match(/^##\s+(.+?)\s*$/);
+                if (heading) {
+                  current = heading[1];
+                  sections[current] = '';
+                } else if (current && !/^---\s*$/.test(line) && !/^\s*- \[[ x]\]/i.test(line)) {
+                  sections[current] += line.trim();
+                }
                 if (fence) {
                   if (marker && marker[1][0] === fence[0] && marker[1].length >= fence.length &&
                       /^ {0,3}[`~]+\s*$/.test(line)) fence = null;
@@ -180,19 +191,6 @@ jobs:
                 .replace(/(^|[^*\w])\*(?!\*)[^*\n]+\*(?!\*)/g, '$1');
 
               if (isDescription) {
-                const sections = {};
-                let current = null;
-                // Read from the text with only comments removed: a section holding nothing but a
-                // command block still has content.
-                for (const line of text.split('\n')) {
-                  const heading = line.match(/^##\s+(.+?)\s*$/);
-                  if (heading) {
-                    current = heading[1];
-                    sections[current] = '';
-                  } else if (current && !/^---\s*$/.test(line) && !/^\s*- \[[ x]\]/i.test(line)) {
-                    sections[current] += line.trim();
-                  }
-                }
                 for (const heading of ['Why', 'What changed', 'How to verify']) {
                   if (!(heading in sections)) findings.push(`no "## ${heading}" heading`);
                   else if (!sections[heading]) findings.push(`"## ${heading}" is empty`);
