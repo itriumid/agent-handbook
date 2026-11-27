@@ -158,7 +158,8 @@ jobs:
               // same character, at least as long, with only whitespace after it. A heading inside one is an example,
               // not a section. The lines between the fences count as content of the section around them, so
               // a command-only How to verify isn't empty; the fence lines themselves don't.
-              // A blockquote runs until a blank line, including continuation lines without a `>`.
+              // A blockquote runs until a blank line or the start of a new list item, heading or rule,
+              // including paragraph continuation lines without a `>`.
               const proseLines = [];
               const sections = {};
               let current = null;
@@ -176,7 +177,8 @@ jobs:
                   else countAsContent(line);
                   continue;
                 }
-                const opening = line.match(/^ {0,3}(`{3,}|~{3,})/);
+                // A backtick fence's info string can't contain a backtick: ```a``` on one line is inline code.
+                const opening = line.match(/^ {0,3}(`{3,}(?=[^`]*$)|~{3,})/);
                 if (opening) {
                   fence = opening[1];
                   quoted = false;
@@ -192,18 +194,18 @@ jobs:
                 }
                 countAsContent(line);
                 if (/^\s*>/.test(line)) quoted = true;
-                else if (!line.trim()) quoted = false;
+                else if (!line.trim() || /^\s*([-*+]\s|\d+[.)]\s|#{1,6}\s|-{3,}\s*$)/.test(line)) quoted = false;
                 if (!quoted) proseLines.push({ line, section: current });
               }
 
               // Words inside code, quotes and comments are someone else's: interface copy, commands, the
-              // template's own instructions. A code span's delimiter is a run of backticks closed by a run of
-              // the same length, so ``a `b` `` is one span.
+              // template's own instructions. A code span opens on a whole run of backticks and closes on a run
+              // of the same length, so ``a `b` `` is one span and ``a` is no span at all.
               const strip = (lines) =>
                 lines
                   .map(({ line }) => line)
                   .join('\n')
-                  .replace(/(`+)(?!`)[^\n]*?(?<!`)\1(?!`)/g, '')
+                  .replace(/(?<!`)(`+)(?!`)[^\n]*?(?<!`)\1(?!`)/g, '')
                   .replace(/"[^"\n]*"|“[^”\n]*”/g, '')
                   .replace(/(^|[^*\w])\*(?!\*)[^*\n]+\*(?!\*)/g, '$1');
               const prose = strip(proseLines);

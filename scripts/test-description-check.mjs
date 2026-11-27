@@ -65,6 +65,7 @@ const cases = [
   { name: 'reply phrasing inside a multi-backtick code span', input: { body: describe({ changed: 'Removes ``I fixed `total` `` from the log.' }) }, fails: [] },
   { name: 'reply phrasing on a blockquote\'s continuation line', input: { body: describe({ changed: '> The old banner said:\nI ran out of space.\n\nThe banner is gone.' }) }, fails: [] },
   { name: 'reply phrasing after a mixed-character line inside a fence', input: { body: describe({ changed: 'The example:\n\n```\n```~~~\nI added a flag\n```' }) }, fails: [] },
+  { name: 'a fenced-looking line that is inline code', input: { body: describe({ why: '```total()``` rounded down, so invoices were a cent short.' }) }, fails: [] },
   { name: 'a Dependabot pull request without headings', input: { body: 'Bumps actions/checkout from 6 to 7.', user: 'dependabot[bot]', commitAuthor: 'dependabot[bot]', commits: ['Bump actions/checkout\n\nI ran nothing.'] }, fails: [] },
   { name: 'a revert made by GitHub\'s button', input: { body: 'Reverts owner/repo#12', ref: 'revert-12-fix/rounding' }, fails: [] },
 
@@ -78,6 +79,8 @@ const cases = [
   { name: 'a "before merging" note in a section after How to verify', input: { body: describe() + '\n## Deployment\n\nBefore merging, rename the deployment.\n' }, fails: ['has a "before merging" note outside How to verify'] },
   { name: 'a merge-order note in a section after How to verify', input: { body: describe() + '\n## Notes\n\nMerge #12 first.\n' }, fails: ['has a merge-order note outside How to verify'] },
   { name: 'an open checkbox inside How to verify', input: { body: describe({ verify: '- [ ] Run the regression suite' }) }, fails: ['has an unfinished task: "- [ ] Run the regression suite"'] },
+  { name: 'reply phrasing after an unclosed double backtick', input: { body: describe({ changed: 'Removes ``I ran` from the log.' }) }, fails: ['narrates as "I": "I ran"'] },
+  { name: 'an open checkbox right after a blockquote', input: { body: describe({ changed: '> Previous behavior\n- [ ] Run the regression suite' }) }, fails: ['has an unfinished task: "- [ ] Run the regression suite"'] },
   { name: 'a decision reported as "you"', input: { body: describe({ why: 'You chose scrambled backups by default.' }) }, fails: ['reports a decision as "you" or "we": "You chose"'] },
   { name: 'the requester addressed', input: { body: describe({ why: 'Per your feedback, rounding is fixed.' }) }, fails: ['addresses the requester'] },
   { name: 'narration as "I"', input: { body: describe({ verify: "I ran the job's commands against Postgres 16." }) }, fails: ['narrates as "I": "I ran"'] },
